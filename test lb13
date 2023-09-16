@@ -1,0 +1,65 @@
+using NUnit.Framework;
+using lb13;
+using System;
+
+
+namespace FigureTests
+{
+    [TestFixture]
+    public class FigureTests
+    {
+        [Test]
+        public void TestValidFigureCreation()
+        {
+            // Arrange
+            Point[] validPoints = new Point[]
+            {
+                new Point(0, 0),
+                new Point(0, 1),
+                new Point(1, 0)
+            };
+
+            // Act
+            Figure figure = new Figure(validPoints);
+
+            // Assert
+            Assert.IsNotNull(figure);
+            Assert.AreEqual("Треугольник", figure.Name);
+        }
+
+        [Test]
+        public void TestInvalidFigureCreation()
+        {
+            // Arrange
+            Point[] invalidPoints = new Point[]
+            {
+                new Point(0, 0),
+                new Point(0, 1)
+            };
+
+            // Act and Assert
+            Assert.Throws<ArgumentException>(() => new Figure(invalidPoints));
+        }
+
+        [Test]
+        public void TestPerimeterCalculation()
+        {
+            // Arrange
+            Point[] validPoints = new Point[]
+            {
+                new Point(0, 0),
+                new Point(0, 1),
+                new Point(1, 0)
+            };
+
+            Figure figure = new Figure(validPoints);
+
+            // Act
+            double perimeter = figure.PerimeterCalculator();
+
+            // Assert
+            Assert.AreEqual(3.4142135623730951, perimeter, 0.0001);
+        }
+    }
+}
+

@@ -1,0 +1,39 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("Минимальные и максимальные значения для предопределенных типов данных CTS:");
+
+        PrintMinMaxValues<byte>();
+        PrintMinMaxValues<sbyte>();
+        PrintMinMaxValues<short>();
+        PrintMinMaxValues<ushort>();
+        PrintMinMaxValues<int>();
+        PrintMinMaxValues<uint>();
+        PrintMinMaxValues<long>();
+        PrintMinMaxValues<ulong>();
+        PrintMinMaxValues<float>();
+        PrintMinMaxValues<double>();
+        PrintMinMaxValues<decimal>();
+
+        Console.ReadLine();
+    }
+
+    static void PrintMinMaxValues<T>()
+    {
+        string typeName = typeof(T).ToString().Replace("System.", "");
+        Console.WriteLine($"{typeName}: Минимальное = {MinValue<T>()}, Максимальное = {MaxValue<T>()}");
+    }
+
+    static T MinValue<T>()
+    {
+        return (T)typeof(T).GetField("MinValue").GetValue(null);
+    }
+
+    static T MaxValue<T>()
+    {
+        return (T)typeof(T).GetField("MaxValue").GetValue(null);
+    }
+}

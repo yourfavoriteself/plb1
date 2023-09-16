@@ -1,0 +1,40 @@
+using NUnit.Framework;
+using System;
+
+[TestFixture]
+public class RectangleTests
+{
+    [Test]
+    public void CalculateArea_ValidInput_ReturnsCorrectArea()
+    {
+        // Arrange
+        Rectangle rectangle = new Rectangle(5, 10);
+
+        // Act
+        double area = rectangle.Area;
+
+        // Assert
+        Assert.AreEqual(50, area);
+    }
+
+    [Test]
+    public void CalculatePerimeter_ValidInput_ReturnsCorrectPerimeter()
+    {
+        // Arrange
+        Rectangle rectangle = new Rectangle(5, 10);
+
+        // Act
+        double perimeter = rectangle.Perimeter;
+
+        // Assert
+        Assert.AreEqual(30, perimeter);
+    }
+
+    [Test]
+    public void Constructor_NegativeInput_ThrowsArgumentException()
+    {
+        // Act & Assert
+        Assert.Throws<ArgumentException>(() => new Rectangle(-5, 10));
+    }
+}
+

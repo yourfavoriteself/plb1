@@ -1,0 +1,69 @@
+using System;
+
+public class Rectangle
+{
+    private double side1;
+    private double side2;
+
+    public Rectangle(double sideA, double sideB)
+    {
+        if (sideA <= 0 || sideB <= 0)
+        {
+            throw new ArgumentException("Стороны прямоугольника должны быть положительными числами.");
+        }
+
+        side1 = sideA;
+        side2 = sideB;
+    }
+
+
+    private double CalculateArea()
+    {
+        return side1 * side2;
+    }
+
+    private double CalculatePerimeter()
+    {
+        return 2 * (side1 + side2);
+    }
+
+    public double Area
+    {
+        get { return CalculateArea(); }
+    }
+
+    public double Perimeter
+    {
+        get { return CalculatePerimeter(); }
+    }
+}
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Console.Write("Введите длину первой стороны прямоугольника: ");
+        double sideA = double.Parse(Console.ReadLine());
+
+        Console.Write("Введите длину второй стороны прямоугольника: ");
+        double sideB = double.Parse(Console.ReadLine());
+
+        Rectangle rectangle = new Rectangle(sideA, sideB);
+
+        Console.WriteLine($"Периметр прямоугольника: {rectangle.Perimeter}");
+        Console.WriteLine($"Площадь прямоугольника: {rectangle.Area}");
+
+        // Тесты
+        TestRectangleMethods();
+    }
+
+    static void TestRectangleMethods()
+    {
+        Rectangle rectangle1 = new Rectangle(5, 10);
+        Console.WriteLine($"Тест 1 - Периметр: {rectangle1.Perimeter}, Площадь: {rectangle1.Area}");
+
+        Rectangle rectangle2 = new Rectangle(3, 7);
+        Console.WriteLine($"Тест 2 - Периметр: {rectangle2.Perimeter}, Площадь: {rectangle2.Area}");
+
+    }
+}
